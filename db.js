@@ -1,50 +1,16 @@
-export const videosData = [
-  {
-    id: 537285,
-    title: "Video awesome",
-    description: "This is someting I love",
-    views: 24,
-    videoFile: "https://archive.org/details/BigBuckBunny_124",
-    creator: {
-      id: 121212,
-      name: "woong",
-      email: "dev_woong@naver.com",
-    },
-  },
-  {
-    id: 424534,
-    title: "Video super",
-    description: "This is someting I love",
-    views: 24,
-    videoFile: "https://archive.org/details/BigBuckBunny_124",
-    creator: {
-      id: 121212,
-      name: "woong",
-      email: "dev_woong@naver.com",
-    },
-  },
-  {
-    id: 264754,
-    title: "Video nice",
-    description: "This is someting I love",
-    views: 24,
-    videoFile: "https://archive.org/details/BigBuckBunny_124",
-    creator: {
-      id: 121212,
-      name: "woong",
-      email: "dev_woong@naver.com",
-    },
-  },
-  {
-    id: 555325,
-    title: "Video perfect",
-    description: "This is someting I love",
-    views: 24,
-    videoFile: "https://archive.org/details/BigBuckBunny_124",
-    creator: {
-      id: 121212,
-      name: "woong",
-      email: "dev_woong@naver.com",
-    },
-  },
-]
+import mongoose from "mongoose"
+import dotenv from "dotenv"
+dotenv.config()
+
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+})
+
+const db = mongoose.connection
+
+const handleOpen = () => console.log("Connected to DB")
+const handleError = (error) => console.log(`Error on DB Connection:${error}`)
+
+db.once("open", handleOpen)
+db.on("error", handleError)
